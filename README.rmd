@@ -1,0 +1,6 @@
+---
+title: Curriculum Vitae - Jhon Flores Rojas
+output: github_document
+---
+
+Mi CV se realizó con el paquete [vitae](https://github.com/ropenscilabs/vitae) para R.
