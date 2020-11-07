@@ -115,7 +115,6 @@ hab %>% detailed_entries(
 )
 ```
 
-\newpage
 
 # Cursos en linea
 
@@ -141,7 +140,6 @@ hab %>% detailed_entries(
 ## JuliaAcademy
 
 - Introduction to Julia
-- Julia for Data Science (Progreso)
-
+- Julia for Data Science 
 \newpage
 
