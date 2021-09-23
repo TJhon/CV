@@ -1,0 +1,272 @@
+---
+title: "Lijia Yu's resume"
+author: Jhon Yu
+date: "`r Sys.Date()`"
+output:
+  pagedown::html_resume:
+    # set it to true for a self-contained HTML page but it'll take longer to render
+    self_contained: false
+# uncomment this line to produce HTML and PDF in RStudio:
+knit: pagedown::chrome_print
+---
+
+Aside
+===
+
+Egresado de Economía, apasionado del software libre, ciencia de datos, análisis de datos reproducible y automatizable.
+
+Información de contacto {#contact}
+--------------------------------------------------------------------------------
+
+- <i class="fa fa-envelope"></i> fr.jhonk@gmail.com
+- <i class="fa fa-github"></i> [github.com/tjhon](https://github.com/tJhon/)
+- <i class="fab fa-linkedin"></i> [JhonK](https://linkedin.com/in/jhon-kevin-flores-rojas-a19133196)
+- <i class="fa fa-phone"></i> +51 947178779
+
+
+<!---- For more information, please contact me via email.-->
+
+
+Habilidades {#skills}
+---
+
+- Medianamente experto en R y Rstudio con énfasis en `Tidyverse`
+
+- Web Scraping, limpieza de datos
+
+- Automatización de procesos
+
+- Github
+
+- Conocimiento básico de Python, Linux y SQL
+
+- Inglés básico
+
+
+Disclaimer {#disclaimer}
+---
+
+
+Última actualización: `r Sys.Date()`.
+
+
+
+Main
+===
+
+Jhon Kevin Flores Rojas {#title}
+---
+
+
+
+
+Educacion {data-icon=graduation-cap data-concise=true}
+---
+
+### Universidad Nacional del Centro del Perú
+
+Economía
+
+Junin, Perú
+
+2015 - 2019
+
+
+### OSINERGMIN
+
+Becario
+
+Lima, Perú
+
+2020.1 -  2020.3
+
+Curso de Extensión Universitaria XVII
+
+
+### OSIPTEL
+
+Becario
+
+Lima, Perú
+
+2021.1 - 2021.3
+
+Curso de Extensión Universitaria XXV (Online)
+
+
+Programas informáticos {data-icon=laptop}
+---
+
+### R y RStudio
+
+**Medianamente experto**
+
+N/A
+
+::: concise
+- Programación
+- Visualización de datos
+- Limpieza de datos
+- Manejo de datos
+- Estimación de modelos
+- Web Scraping
+- Automatizacion de documentos, reportes y diapositivas con Rmarkdown
+- Creación de paquetes
+:::
+
+
+
+### Excel - Google SpreedSheet
+
+**Medianamente experto**
+
+N/A
+
+::: concise
+- Visualización de datos
+- Manejo de datos
+- Reportes dinámicos (Google SpreadSheet)
+:::
+
+### Julia - Python - SQL
+**Conocimientos generales**
+
+
+N/A
+
+::: concise
+- Programación
+- Visualización de datos (Julia)
+- Web Scraping (Python)
+:::
+
+### Git / Github
+**Conocimientos generales**
+
+N/A
+
+- Control de versiones
+
+### Stata
+**Conocimiento generales**
+
+N/A
+
+- Entender la programación ".do"  y traducirlo al lenguaje "R"
+
+### Editores de documento y Código
+
+N/A
+
+N/A
+
+::: concise
+- NeoVim
+- Rstudio (Preferido)
+- Visual Studio Code
+- Word
+:::
+
+
+Professional Experience {data-icon=suitcase}
+---
+
+### Practicante
+
+Rileco SAC
+
+Huancayo, Junin
+
+2020
+
+::: concise
+- Apoyo en investigación
+- Analista de datos
+:::
+
+### Apoyo
+
+Facultad de Economia - UNCP
+
+Huancayo, Junin
+
+2018
+
+::: concise
+- Implementación del Sistema de Gestión de Calidad
+- Generación de reportes
+:::
+
+
+Cursos en línea {data-icon=chalkboard-teacher}
+--------------------------------------------------------------------------------
+
+### DataCamp R - Git
+
+N/A
+
+N/A
+
+N/A
+
+::: concise
+- Introduction to Git
+- Introduction to tidyverse
+- Writing Efficient R Code
+- Introduction to Data Visualization with GGplot
+- Intermediate R
+- Foundations of Functional Programing With Purrr
+- Forecasting in R
+- Data Visualization with GGplot2 (Part 1)
+- Data Visualization With GGplot2 (Part 2)
+- Introduction to SQL
+- Joining Data in SQL
+- Database Design
+:::
+
+
+### 365 Data Science
+
+N/A
+
+N/A
+
+N/A
+
+::: concise
+- Introduction to python
+- Introduction to R programming
+- Introduction to Data Science
+- Mathematics
+:::
+
+### Julia Academy
+
+N/A
+
+N/A
+
+
+::: concise
+- Introduction to Julia
+- Julia for Data Science
+:::
+
+
+### DMC Peru
+
+N/A
+
+N/A
+
+::: concise
+- Análisis de Forecast con R y Python
+- Credit Scoring Advanced
+- Deep Learning Inmersion
+- Machine Learning Inmersion con Python
+- Minería de Datos con R - Nivel Básico
+- Python for Analytics
+- R for Business Analytics
+:::
+
+
