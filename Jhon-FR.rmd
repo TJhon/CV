@@ -53,7 +53,7 @@ Disclaimer {#disclaimer}
 
 Última actualización: `r Sys.Date()`. 
 
-Versión reciente: [CV]()
+Versión reciente: [CV](https://github.com/TJhon/CV/blob/master/Jhon-FR.pdf)
 
 
 
@@ -66,7 +66,7 @@ Jhon Kevin Flores Rojas {#title}
 
 
 
-Educacion {data-icon=graduation-cap data-concise=true}
+Educación {data-icon=graduation-cap data-concise=true}
 ---
 
 ### Universidad Nacional del Centro del Perú
