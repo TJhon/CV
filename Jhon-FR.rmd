@@ -13,7 +13,7 @@ knit: pagedown::chrome_print
 Aside
 ===
 
-Egresado de Economía, apasionado del software libre, ciencia de datos, análisis de datos reproducible y automatizable.
+Egresado de Economía, apasionado del software libre, evaluación de impacto, ciencia de datos, análisis de datos reproducible y automatizable.
 
 Información de contacto {#contact}
 --------------------------------------------------------------------------------
@@ -30,15 +30,19 @@ Información de contacto {#contact}
 Habilidades {#skills}
 ---
 
-- Medianamente experto en R y Rstudio con énfasis en `Tidyverse`
+- Conocimiento avanzado en R y Rstudio con énfasis en `Tidyverse`
 
-- Web Scraping, limpieza de datos
+- Web Scraping (R - Python)
+
+- Limpieza de datos
 
 - Automatización de procesos
 
-- Github
+- Git / Github
 
-- Conocimiento básico de Python, Linux y SQL
+- Conocimiento intermedio de Python, 
+
+- Conocimiento Basico de Linux y SQL
 
 - Inglés básico
 
@@ -47,7 +51,9 @@ Disclaimer {#disclaimer}
 ---
 
 
-Última actualización: `r Sys.Date()`.
+Última actualización: `r Sys.Date()`. 
+
+Versión reciente: [CV]()
 
 
 
@@ -99,7 +105,7 @@ Programas informáticos {data-icon=laptop}
 
 ### R y RStudio
 
-**Medianamente experto**
+**Avanzado**
 
 N/A
 
@@ -111,7 +117,7 @@ N/A
 - Estimación de modelos
 - Web Scraping
 - Automatizacion de documentos, reportes y diapositivas con Rmarkdown
-- Creación de paquetes
+- Creación de paquetes - [PeruData](https://github.com/TJhon/PeruDAta)
 :::
 
 
@@ -128,16 +134,40 @@ N/A
 - Reportes dinámicos (Google SpreadSheet)
 :::
 
-### Julia - Python - SQL
-**Conocimientos generales**
+### Python
+
+**Conocimiento intermedio**
+
+N/A
+
+::: concise
+- Programacion
+- Visualización de datos
+- Web Scraping (SELENIUM)
+- Estimacion de modelos
+:::
+
+
+### JuliaLang
+**Conocimientos intermedios**
 
 
 N/A
 
 ::: concise
 - Programación
-- Visualización de datos (Julia)
-- Web Scraping (Python)
+- Limpieza de datos
+- Visualización de datos 
+:::
+
+### SQL
+**Conocimientos generales**
+
+
+N/A
+
+::: concise
+- Manejo de datos
 :::
 
 ### Git / Github
@@ -152,7 +182,7 @@ N/A
 
 N/A
 
-- Entender la programación ".do"  y traducirlo al lenguaje "R"
+- Programación basica ".do"
 
 ### Editores de documento y Código
 

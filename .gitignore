@@ -1,4 +1,6 @@
-cv2_files
+cv2_files/
+Jhon-FR_files/
 *.gitignore
 *.html
 .gitignore
+.Rproj.user
