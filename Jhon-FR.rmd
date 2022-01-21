@@ -13,7 +13,7 @@ knit: pagedown::chrome_print
 Aside
 ===
 
-Egresado de Economía, apasionado del software libre, evaluación de impacto, ciencia de datos, análisis de datos reproducible y automatizable.
+Egresado de Economía, con dominio de varios lenguajes de programación orientados a la evaluación de impacto, ciencia de datos, análisis de datos reproducible y automatizable.
 
 Información de contacto {#contact}
 --------------------------------------------------------------------------------
@@ -42,9 +42,8 @@ Habilidades {#skills}
 
 - Conocimiento intermedio de Python, 
 
-- Conocimiento Basico de Linux y SQL
+- Conocimiento Basico de Linux, SQL y STATA
 
-- Inglés básico
 
 
 Disclaimer {#disclaimer}
@@ -53,7 +52,7 @@ Disclaimer {#disclaimer}
 
 Última actualización: `r Sys.Date()`. 
 
-Versión reciente: [CV](https://github.com/TJhon/CV/blob/master/Jhon-FR.pdf)
+Versión reciente: [CV](https://raw.githubusercontent.com/TJhon/CV/master/Jhon-FR.pdf)
 
 
 
@@ -116,22 +115,33 @@ N/A
 - Manejo de datos
 - Estimación de modelos
 - Web Scraping
-- Automatizacion de documentos, reportes y diapositivas con Rmarkdown
+- Automatización de documentos, reportes y diapositivas con Rmarkdown
 - Creación de paquetes - [PeruData](https://github.com/TJhon/PeruDAta)
 :::
 
+### Stata
+**Medianamente experto**
 
+N/A
 
-### Excel - Google SpreedSheet
+::: Concise
+- Programación ".do"
+- Manipulación y limpeza de datos
+- Integración con Python (Stata-kernel) con Atom
+:::
+
+### Microsoft Office - o similares de Google
 
 **Medianamente experto**
 
 N/A
 
 ::: concise
-- Visualización de datos
-- Manejo de datos
+- Visualización de datos (Excel | Google Sheets)
+- Manejo de datos (Excel | Google Sheets)
 - Reportes dinámicos (Google SpreadSheet)
+- Power Point
+- MS Word
 :::
 
 ### Python
@@ -177,12 +187,7 @@ N/A
 
 - Control de versiones
 
-### Stata
-**Conocimiento generales**
 
-N/A
-
-- Programación basica ".do"
 
 ### Editores de documento y Código
 
@@ -195,6 +200,7 @@ N/A
 - Rstudio (Preferido)
 - Visual Studio Code
 - Word
+- Atom
 :::
 
 
