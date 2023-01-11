@@ -1,308 +1,234 @@
 ---
-title: "Lijia Yu's resume"
-author: Jhon Yu
-date: "`r Sys.Date()`"
+name: Jhon K. 
+surname: Flores Rojas
+address: "I am an economics bachellor, I have expertise in several machine learning oriented languages, data analysis (R is my favorite in this area), spatial analysis (R: sf and raster; Python: folium), impact evaluation, and recently, causal inference, in addition to other programming languages. Additionally, I have knowledge in JavaScript, Git, and Linux."
+phone: +51 947178779
+email: "fr.jhonk@gmail.com"
+twitter: JhonKevinFlore1
+linkedin: jhonk-fr
+date: "`r format(Sys.Date(), '%B %Y')`"
 output:
-  pagedown::html_resume:
-    # set it to true for a self-contained HTML page but it'll take longer to render
-    self_contained: false
-# uncomment this line to produce HTML and PDF in RStudio:
-knit: pagedown::chrome_print
+  vitae::awesomecv:
+    page_total: true
+    show_footer: true
+    keep_tex: false
+# headcolor: 414141
+header-includes:
+  # \colorlet{awesome}{black}
+  \usepackage{float}
+#   \usepackage{multicol}
+#   \usepackage{colortbl}
+#   \usepackage{hhline}
+#   \usepackage{hyperref}
+  # \usepackage[dvipsnames]{xcolor}
+  # \definecolor{light-gray}{gray}{0.95}
+  # \arrayrulecolor{white}
+  # \definecolor{awesome-blue}{HTML}{0e7272}
+  # \colorlet{awesome}{awesome-orange}
+  
+# editor_options: 
+#   chunk_output_type: console
+# headcolor: awesome-skyblue
 ---
 
-Aside
-===
+```{r setup, include=F}
+# install.packages("librarian")
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+librarian::shelf(
+  vitae, tidyverse, sf, dplyr, ggrepel, fontawesome,
+  kableExtra, huxtable, svglite, googlesheets4, purrr,
+  glue, here, stringr
+)
+
+```
+
+
+```{r}
+data_ref <- list(
+  "educ" = "https://docs.google.com/spreadsheets/d/1JaAIVolNV9kAeHidlh8zpsbiTVF5nEeF0OkLRryI7Rc/edit#gid=0"
+  ,"skillTech" = "https://docs.google.com/spreadsheets/d/1oa2nY8nO-Up98uWvTVhrTX8P2gzlVyAyAkaiNfvhBBA/edit#gid=0"
+  , "programming" = "https://docs.google.com/spreadsheets/d/1elfWQwTLxnwi_l4lFWodXD5aOkGEbAhzZPaoJkV4kPA/edit?usp=sharing"
+  , "membership" = "https://docs.google.com/spreadsheets/d/11Auf3o22vYrkeuQQu7Hw9IuyNrPauahjqhiooDnp7Jc/edit?usp=sharing"
+  , "course-online" = "https://docs.google.com/spreadsheets/d/1HM8iRJkeLKgngPdu1rGyQ2qPfXZS1bWA6-Zuti2Z_XE/edit?usp=sharing"
+  , "exp" = "https://docs.google.com/spreadsheets/d/1AuGCfHz-nIwiyB71qDNjK5S6xLeGaTxJU1J_xXlJXIc/edit?usp=sharing"
+)
+
+```
+
+```{r}
+gs4_deauth()
+
+search_files <- function(data_list_ref = data_ref, search_in = "data", force_download = F, save = T) {
+  
+  if(!dir.exists(search_in)){
+    dir.create(search_in)
+    force_download = T
+  }
+  
+  read_google <- function(doc_name, name_save = doc_name){
+    doc_file <-
+      read_sheet(doc_name) |> 
+      mutate(across(where(is.list), unlist)) 
+    return(doc_file)
+  }
+  if(force_download){
+    data_ref_here = data_list_ref |> 
+      map(read_google)
+  }
+  
+  data_ref_name <- data_ref |> names()
+  data_dir <- dir(search_in) |> stringr::str_remove(".xlsx")
+  exist <- data_ref_name %in% data_dir
+  
+  data_ref_here <- list()
+  
+  for(i in data_ref_name){
+    if(i %in% data_dir){
+      data_ref_here[[i]] = readxl::read_xlsx(here(search_in, glue("{i}.xlsx")))
+    }else{
+      data_ref_here[[i]] = read_google(data_ref[[i]], name_save = i)
+    }
+  }
+  
+  save_file <- function(name){
+    data_ref_here[[name]] |> 
+      writexl::write_xlsx(here(search_in, glue("{name}.xlsx")))
+  }
+  
+  if(save){
+    data_ref_here |> 
+      names() |> 
+      map(save_file)
+  }
+  return(data_ref_here)
+}
+
+data_ref_xl <- search_files()
+```
+
+
+
+Education
+===============================
+
+```{r}
+data_ref_xl[["educ"]] |> 
+  mutate(
+    across(c(inicio, final), str_replace, " - ", ", ")
+    , date = paste(inicio, final, sep = " - ")
+  ) |> 
+  detailed_entries(
+    what = title, date, lugar, region, why
+  )
+```
+
+Professional Esperience
+===============================
+
+```{r}
+
+
+# read_csv("data/exp.csv") |> 
+data_ref_xl[["exp"]] |> 
+  drop_na(why1) |> 
+  tidyr::fill(1:5) |>
+  arrange(-final, lugar) |>
+  # mutate(why = paste("s", why1))
+  # slice(-c(6)) |>
+  # mutate(why = str_sub(why1, 2, -2))
+  # mutate(why = str_replace(why, "[\\}]", "}")) |>
+  # view()
+  # tidyr::fill(where, date, what) |> 
+  detailed_entries(why = why1, where = region, what = title, with = lugar, when = final, .protect = F)
+```
 
-Egresado de Economía, con dominio de varios lenguajes de programación orientados a la evaluación de impacto, ciencia de datos, análisis de datos reproducible y automatizable.
+\tiny
+(\*) You can see the Books  $\rightarrow$ \href{https://d2cml-ai.github.io/d2cml.ai/}{link} 
+(\**) You can see the Julia Package $\rightarrow$ \href{https://github.com/d2cml-ai/HDMjl.jl}{link}
+(\***) You can see the Library $\rightarrow$ \href{https://d2cml-ai.github.io/python_visual_library/intro.html}{link}
 
-Información de contacto {#contact}
---------------------------------------------------------------------------------
+\footnotesize
 
-- <i class="fa fa-envelope"></i> fr.jhonk@gmail.com
-- <i class="fa fa-github"></i> [github.com/tjhon](https://github.com/tJhon/)
-- <i class="fab fa-linkedin"></i> [JhonK](https://linkedin.com/in/jhon-kevin-flores-rojas-a19133196)
-- <i class="fa fa-phone"></i> +51 947178779
 
 
-<!---- For more information, please contact me via email.-->
+Technical skills
+===============================
 
+```{r techtable, results='markup'}
+cl = "#0c3d49"
 
-Habilidades {#skills}
----
+table_skill <- function(data){
+  data |> 
+  kable(booktabs = T, align = 'c', escape = F, format = "latex") |>
+  kable_styling(full_width = F, font_size = 9, latex_options = "HOLD_position") |> 
+  row_spec(0, bold = T, color = cl) |> 
+  row_spec(1, bold = F, color = "#7f7f7f") |> 
+  column_spec(column = 1:3, width = '4.75cm')
+  
+}
 
-- Conocimiento avanzado en R y Rstudio con énfasis en `Tidyverse`
+data_ref_xl[["skillTech"]] |> 
+  table_skill()
 
-- Web Scraping (R - Python)
 
-- Limpieza de datos
+```
 
-- Automatización de procesos
 
-- Git / Github
+Programming Skills
+===============================
 
-- Conocimiento intermedio de Python, 
+```{r}
+data_ref_xl[["programming"]] |> 
+  kable(booktabs = T, align = 'c', escape = F, format = "latex") |> 
+  kable_styling(full_width = F, font_size = 7, latex_options = "HOLD_position") |> 
+  row_spec(0, bold = T, color = cl) |> 
+  footnote(
+    general_title = " ",
+    general = "\\\\tiny (1) Familiar \\\\rightarrow (2) Intermediate  \\\\rightarrow (3) Advanced  \\\\rightarrow (4) Proficient",
+    escape = F
+  )
 
-- Conocimiento Basico de Linux, SQL y STATA
+```
 
 
+Publications
+===============================
 
-Disclaimer {#disclaimer}
----
+```{r}
+tribble(
+  ~autor, ~what , ~when, ~where, ~whit,
+  "Jhon Kevin Flores Rojas", "Loading, downloading, and cleaning of data from various sources from Peru.", "2022, May", "\\href{https://github.com/TJhon/PeruData}{PeruData - link}", "Correction and implementation of new methods from the \\href{https://d2cml-ai.github.io/d2cml.ai}{books}, Inference on Causal and Structural Parameters using ML and AI with R, Python, and Julia, used in the course 14.38 at MIT, and, Machine Learning and Causal Inference using Python, used in the MGTECON-634 course at Stanford.",
+) |> 
+  fill(where, whit, autor, when, what) |> 
+  detailed_entries(what, when, autor, where, .protect = F)
+```
 
 
-Última actualización: `r Sys.Date()`. 
 
-Versión reciente: [CV](https://raw.githubusercontent.com/TJhon/CV/master/Jhon-FR.pdf)
 
+Memberships
+===============================
 
 
-Main
-===
+\begin{cvskills}
+  \cvskill
+    {\href{ https://github.com/d2cml-ai}{Dive into Causal Machine Learning}}
+    {Since 2022-Jul}
+\end{cvskills}
 
-Jhon Kevin Flores Rojas {#title}
----
 
 
 
+Courses
+===============================
 
-Educación {data-icon=graduation-cap data-concise=true}
----
+```{r}
+data_ref_xl[["course-online"]] |> 
+  tidyr::fill(where, date, what) |> 
+  detailed_entries(why = why, with = where, when = date, what = what)
+```
 
-### Universidad Nacional del Centro del Perú
 
-Economía
-
-Junin, Perú
-
-2015 - 2019
-
-
-### OSINERGMIN
-
-Becario
-
-Lima, Perú
-
-2020.1 -  2020.3
-
-Curso de Extensión Universitaria XVII
-
-
-### OSIPTEL
-
-Becario
-
-Lima, Perú
-
-2021.1 - 2021.3
-
-Curso de Extensión Universitaria XXV (Online)
-
-
-Programas informáticos {data-icon=laptop}
----
-
-### R y RStudio
-
-**Avanzado**
-
-N/A
-
-::: concise
-- Programación
-- Visualización de datos
-- Limpieza de datos
-- Manejo de datos
-- Estimación de modelos
-- Web Scraping
-- Automatización de documentos, reportes y diapositivas con Rmarkdown
-- Creación de paquetes - [PeruData](https://github.com/TJhon/PeruDAta)
-:::
-
-### Stata
-**Medianamente experto**
-
-N/A
-
-::: Concise
-- Programación ".do"
-- Manipulación y limpeza de datos
-- Integración con Python (Stata-kernel) con Atom
-:::
-
-### Microsoft Office - o similares de Google
-
-**Medianamente experto**
-
-N/A
-
-::: concise
-- Visualización de datos (Excel | Google Sheets)
-- Manejo de datos (Excel | Google Sheets)
-- Reportes dinámicos (Google SpreadSheet)
-- Power Point
-- MS Word
-:::
-
-### Python
-
-**Conocimiento intermedio**
-
-N/A
-
-::: concise
-- Programacion
-- Visualización de datos
-- Web Scraping (SELENIUM)
-- Estimacion de modelos
-:::
-
-
-### JuliaLang
-**Conocimientos intermedios**
-
-
-N/A
-
-::: concise
-- Programación
-- Limpieza de datos
-- Visualización de datos 
-:::
-
-### SQL
-**Conocimientos generales**
-
-
-N/A
-
-::: concise
-- Manejo de datos
-:::
-
-### Git / Github
-**Conocimientos generales**
-
-N/A
-
-- Control de versiones
-
-
-
-### Editores de documento y Código
-
-N/A
-
-N/A
-
-::: concise
-- NeoVim
-- Rstudio (Preferido)
-- Visual Studio Code
-- Word
-- Atom
-:::
-
-
-Professional Experience {data-icon=suitcase}
----
-
-### Practicante
-
-Rileco SAC
-
-Huancayo, Junin
-
-2020
-
-::: concise
-- Apoyo en investigación
-- Analista de datos
-:::
-
-### Apoyo
-
-Facultad de Economia - UNCP
-
-Huancayo, Junin
-
-2018
-
-::: concise
-- Implementación del Sistema de Gestión de Calidad
-- Generación de reportes
-:::
-
-
-Cursos en línea {data-icon=chalkboard-teacher}
---------------------------------------------------------------------------------
-
-### DataCamp R - Git
-
-N/A
-
-N/A
-
-N/A
-
-::: concise
-- Introduction to Git
-- Introduction to tidyverse
-- Writing Efficient R Code
-- Introduction to Data Visualization with GGplot
-- Intermediate R
-- Foundations of Functional Programing With Purrr
-- Forecasting in R
-- Data Visualization with GGplot2 (Part 1)
-- Data Visualization With GGplot2 (Part 2)
-- Introduction to SQL
-- Joining Data in SQL
-- Database Design
-:::
-
-
-### 365 Data Science
-
-N/A
-
-N/A
-
-N/A
-
-::: concise
-- Introduction to python
-- Introduction to R programming
-- Introduction to Data Science
-- Mathematics
-:::
-
-### Julia Academy
-
-N/A
-
-N/A
-
-
-::: concise
-- Introduction to Julia
-- Julia for Data Science
-:::
-
-
-### DMC Peru
-
-N/A
-
-N/A
-
-::: concise
-- Análisis de Forecast con R y Python
-- Credit Scoring Advanced
-- Deep Learning Inmersion
-- Machine Learning Inmersion con Python
-- Minería de Datos con R - Nivel Básico
-- Python for Analytics
-- R for Business Analytics
-:::
 
 
