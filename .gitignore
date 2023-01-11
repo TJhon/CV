@@ -1,5 +1,7 @@
 cv2_files/
 Jhon-FR_files/
+fonts/
+data/
 *.gitignore
 *.html
 .gitignore
