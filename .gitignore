@@ -6,3 +6,5 @@ data/
 *.html
 .gitignore
 .Rproj.user
+*.cls
+*sty
