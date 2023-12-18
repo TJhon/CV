@@ -6,29 +6,17 @@ phone: +51 947178779
 email: "fr.jhonk@gmail.com"
 twitter: JhonKevinFlore1
 linkedin: jhonk-fr
+# www: https://jhonkevinfr.netlify.app/
 date: "`r format(Sys.Date(), '%B %Y')`"
 output:
   vitae::awesomecv:
     page_total: true
     show_footer: true
     keep_tex: false
-# headcolor: 414141
+    keep_md: true
 header-includes:
-  # \colorlet{awesome}{black}
   \usepackage{float}
-#   \usepackage{multicol}
-#   \usepackage{colortbl}
-#   \usepackage{hhline}
-#   \usepackage{hyperref}
-  # \usepackage[dvipsnames]{xcolor}
-  # \definecolor{light-gray}{gray}{0.95}
-  # \arrayrulecolor{white}
-  # \definecolor{awesome-blue}{HTML}{0e7272}
-  # \colorlet{awesome}{awesome-orange}
-  
-# editor_options: 
-#   chunk_output_type: console
-# headcolor: awesome-skyblue
+
 ---
 
 ```{r setup, include=F}
@@ -143,12 +131,12 @@ data_ref_xl[["exp"]] |>
   detailed_entries(why = why1, where = region, what = title, with = lugar, when = final, .protect = F)
 ```
 
-\tiny
+<!-- \tiny -->
 (\*) You can see the Books  $\rightarrow$ \href{https://d2cml-ai.github.io/d2cml.ai/}{link} 
 (\**) You can see the Julia Package $\rightarrow$ \href{https://github.com/d2cml-ai/HDMjl.jl}{link}
 (\***) You can see the Library $\rightarrow$ \href{https://d2cml-ai.github.io/python_visual_library/intro.html}{link}
 
-\footnotesize
+<!-- \footnotesize -->
 
 
 
