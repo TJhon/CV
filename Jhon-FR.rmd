@@ -1,39 +1,24 @@
 ---
-name: Jhon K. 
-surname: Flores Rojas
-address: "I am an economics bachellor, I have expertise in several machine learning oriented languages, data analysis (R is my favorite in this area), spatial analysis (R: sf and raster; Python: folium), impact evaluation, and recently, causal inference, in addition to other programming languages. Additionally, I have knowledge in JavaScript, Git, and Linux."
+name: Jhon K. Flores Rojas 
+qualifications: BSc
+position: Data Scientist | Data Analyst
+address: "Junín - Perú"
 phone: +51 947178779
 email: "fr.jhonk@gmail.com"
+www: jhonkevinfr.netlify.app
 twitter: JhonKevinFlore1
+github: tjhon
 linkedin: jhonk-fr
 date: "`r format(Sys.Date(), '%B %Y')`"
+headcolor: "11577c"
 output:
   vitae::awesomecv:
-    page_total: true
-    show_footer: true
     keep_tex: false
-# headcolor: 414141
-header-includes:
-  # \colorlet{awesome}{black}
-  \usepackage{float}
-#   \usepackage{multicol}
-#   \usepackage{colortbl}
-#   \usepackage{hhline}
-#   \usepackage{hyperref}
-  # \usepackage[dvipsnames]{xcolor}
-  # \definecolor{light-gray}{gray}{0.95}
-  # \arrayrulecolor{white}
-  # \definecolor{awesome-blue}{HTML}{0e7272}
-  # \colorlet{awesome}{awesome-orange}
-  
-# editor_options: 
-#   chunk_output_type: console
-# headcolor: awesome-skyblue
 ---
 
 ```{r setup, include=F}
 # install.packages("librarian")
-knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, results = 'asis')
 
 librarian::shelf(
   vitae, tidyverse, sf, dplyr, ggrepel, fontawesome,
@@ -41,79 +26,60 @@ librarian::shelf(
   glue, here, stringr
 )
 
+skills <- list("muchosadfa sldfaosif welskdj fasdfoiqw ads" = c("s1", "s2"), "s2" = c("s2", "s2"))
+
+
+cvskill = function(skill, enumerations){
+  enum = glue::glue_collapse(enumerations, sep = ', ')
+  content_skill <- "\n\\cvskill \n\t{"
+  content_end <- "}\n\t{"
+  content_final <- "}"
+  skill_parse = paste0(content_skill, skill, content_end,  enum, content_final)
+  return(skill_parse)
+}
+
+cvskills <- function(skills_list){
+  # result ='asis'
+  begin <- "\\begin{cvskills}"
+  end <- "\n\t\n\\end{cvskills}"
+  
+  content <- ""
+  skills <- skills_list
+  
+  for (skill in names(skills)){
+    content_i = cvskill(skill, skills[[skill]])
+    content = paste(content, content_i)
+  }
+  
+  cat(begin, content, end)
+}
 ```
 
-
-```{r}
-data_ref <- list(
-  "educ" = "https://docs.google.com/spreadsheets/d/1JaAIVolNV9kAeHidlh8zpsbiTVF5nEeF0OkLRryI7Rc/edit#gid=0"
-  ,"skillTech" = "https://docs.google.com/spreadsheets/d/1oa2nY8nO-Up98uWvTVhrTX8P2gzlVyAyAkaiNfvhBBA/edit#gid=0"
-  , "programming" = "https://docs.google.com/spreadsheets/d/1elfWQwTLxnwi_l4lFWodXD5aOkGEbAhzZPaoJkV4kPA/edit?usp=sharing"
-  , "membership" = "https://docs.google.com/spreadsheets/d/11Auf3o22vYrkeuQQu7Hw9IuyNrPauahjqhiooDnp7Jc/edit?usp=sharing"
-  , "course-online" = "https://docs.google.com/spreadsheets/d/1HM8iRJkeLKgngPdu1rGyQ2qPfXZS1bWA6-Zuti2Z_XE/edit?usp=sharing"
-  , "exp" = "https://docs.google.com/spreadsheets/d/1AuGCfHz-nIwiyB71qDNjK5S6xLeGaTxJU1J_xXlJXIc/edit?usp=sharing"
-)
-
-```
 
 ```{r}
 gs4_deauth()
+xlml_url = "https://docs.google.com/spreadsheets/d/1mn-E5bP6Z1r-YUq6KJzIhFNeJ2UpYbt5DK5AtIVlwUs/edit#gid=1692786986"
+names_sheet <- googlesheets4::sheet_names(xlml_url)
 
-search_files <- function(data_list_ref = data_ref, search_in = "data", force_download = F, save = T) {
-  
-  if(!dir.exists(search_in)){
-    dir.create(search_in)
-    force_download = T
-  }
-  
-  read_google <- function(doc_name, name_save = doc_name){
-    doc_file <-
-      read_sheet(doc_name) |> 
-      mutate(across(where(is.list), unlist)) 
-    return(doc_file)
-  }
-  if(force_download){
-    data_ref_here = data_list_ref |> 
-      map(read_google)
-  }
-  
-  data_ref_name <- data_ref |> names()
-  data_dir <- dir(search_in) |> stringr::str_remove(".xlsx")
-  exist <- data_ref_name %in% data_dir
-  
-  data_ref_here <- list()
-  
-  for(i in data_ref_name){
-    if(i %in% data_dir){
-      data_ref_here[[i]] = readxl::read_xlsx(here(search_in, glue("{i}.xlsx")))
-    }else{
-      data_ref_here[[i]] = read_google(data_ref[[i]], name_save = i)
-    }
-  }
-  
-  save_file <- function(name){
-    data_ref_here[[name]] |> 
-      writexl::write_xlsx(here(search_in, glue("{name}.xlsx")))
-  }
-  
-  if(save){
-    data_ref_here |> 
-      names() |> 
-      map(save_file)
-  }
-  return(data_ref_here)
+data <- list()
+for(sheet in names_sheet){
+  data[[sheet]] <- read_sheet(xlml_url, sheet = sheet)|> mutate(across(where(is.list), \(x) unlist(x)))
 }
-
-data_ref_xl <- search_files()
 ```
 
 
+# Algunas cosas sobre mi
 
-Education
-===============================
+\begin{cvparagraph}
+Poseo experiencia en diversos lenguajes de programación como Python, Julia y R. Además, cuento con habilidades para llevar a cabo análisis de datos, econometría, aprendizaje automático y evaluaciones de  impacto. Apliqué las destrezas en inferencia causal y tambien tengo conocimiento del uso de Large Language Models (LLMs).
+
+También tengo competencia en la automatización y creación de librerías en estos lenguajes, lo que me permite contribuir eficazmente en la automatización de procesos. Además, he adquirido experiencia en colaboración en equipo a través de herramientas como GitHub en el ámbito de la programación.
+\end{cvparagraph}
+
+# Educación
 
 ```{r}
-data_ref_xl[["educ"]] |> 
+data[['00_education']] |> 
   mutate(
     across(c(inicio, final), str_replace, " - ", ", ")
     , date = paste(inicio, final, sep = " - ")
@@ -123,112 +89,70 @@ data_ref_xl[["educ"]] |>
   )
 ```
 
-Professional Esperience
-===============================
+
+# Experiencia laboral
 
 ```{r}
-
-
-# read_csv("data/exp.csv") |> 
-data_ref_xl[["exp"]] |> 
+data[["05_work_exp1"]] |> 
   drop_na(why1) |> 
-  tidyr::fill(1:5) |>
-  arrange(-final, lugar) |>
-  # mutate(why = paste("s", why1))
-  # slice(-c(6)) |>
-  # mutate(why = str_sub(why1, 2, -2))
-  # mutate(why = str_replace(why, "[\\}]", "}")) |>
-  # view()
-  # tidyr::fill(where, date, what) |> 
+  fill(1:6) |> 
+  arrange(desc(final), lugar) |> 
+  group_by(lugar) |> 
+  arrange(why1) |> 
   detailed_entries(why = why1, where = region, what = title, with = lugar, when = final, .protect = F)
 ```
 
-\tiny
-(\*) You can see the Books  $\rightarrow$ \href{https://d2cml-ai.github.io/d2cml.ai/}{link} 
-(\**) You can see the Julia Package $\rightarrow$ \href{https://github.com/d2cml-ai/HDMjl.jl}{link}
-(\***) You can see the Library $\rightarrow$ \href{https://d2cml-ai.github.io/python_visual_library/intro.html}{link}
 
-\footnotesize
+\newpage
+# Habilidades Relevantes
 
-
-
-Technical skills
-===============================
-
-```{r techtable, results='markup'}
-cl = "#0c3d49"
-
-table_skill <- function(data){
-  data |> 
-  kable(booktabs = T, align = 'c', escape = F, format = "latex") |>
-  kable_styling(full_width = F, font_size = 9, latex_options = "HOLD_position") |> 
-  row_spec(0, bold = T, color = cl) |> 
-  row_spec(1, bold = F, color = "#7f7f7f") |> 
-  column_spec(column = 1:3, width = '4.75cm')
-  
-}
-
-data_ref_xl[["skillTech"]] |> 
-  table_skill()
-
-
-```
-
-
-Programming Skills
-===============================
 
 ```{r}
-data_ref_xl[["programming"]] |> 
-  kable(booktabs = T, align = 'c', escape = F, format = "latex") |> 
-  kable_styling(full_width = F, font_size = 7, latex_options = "HOLD_position") |> 
-  row_spec(0, bold = T, color = cl) |> 
-  footnote(
-    general_title = " ",
-    general = "\\\\tiny (1) Familiar \\\\rightarrow (2) Intermediate  \\\\rightarrow (3) Advanced  \\\\rightarrow (4) Proficient",
-    escape = F
-  )
-
+tec_skills <- list(
+  "Programación" = c('R', 'Python', 'SQL', 'Julia', 'Stata', 'Java'), 
+  "Análisis de Datos"= c("Visualización", "Limpieza de Datos", "Pronósticos", "Modelado", "Comunicación", "Inferencia", "Aprendizaje Automático", "Web Scraping"), 
+  "Software" = c("Rstudio", 'PowerBi', 'Tableau', 'VSCode', 'NeoVim', 'Linux', 'Terminal', 'MSOffice'),
+  'Programación Web' = c('HTML', 'CSS', 'JavaScript', 'ReactJS'),
+  'Desarrollo de Paquetes' = c('R', 'Python', 'Julia'),
+  'Otros' = c('AWS (EC2)', 'AZURE (Form Recognizer API)', 'Git', 'Markdown', 'Quarto', 'Jupyter', 'SupaBase', 'Automatización')
+)
+cvskills(tec_skills)
 ```
 
 
-Publications
-===============================
+# Desarrollo de Paquetes y Librerias 
+
+## Personales
+
+\small
+- [PeruData](https://github.com/TJhon/PeruData)
+- [Ssynthdid](https://github.com/TJhon/ssynthdid)
+\normalsize
+
+## Como Asistente de Investigación
+
+\small
+- [Python Visual Library](https://github.com/d2cml-ai/python_visual_library)
+- [High Dimensional Methods - Julia](https://github.com/d2cml-ai/HDMjl.jl)
+- [Synthdid - Julia](https://github.com/d2cml-ai/Synthdid.jl)
+- [Synthdid - Python](https://github.com/d2cml-ai/synthdid.py)
+- [OSMR Areas - R](https://github.com/d2cml-ai/osrmareas)
+- [OSMR Python - Python](https://github.com/alexanderquispe/osrm_python)
+- [CSDID - Python](https://github.com/d2cml-ai/csdid)
+\normalsize
+
+
+
+# Participaciones en Concursos de Machine Learning 
 
 ```{r}
 tribble(
-  ~autor, ~what , ~when, ~where, ~whit,
-  "Jhon Kevin Flores Rojas", "Loading, downloading, and cleaning of data from various sources from Peru.", "2022, May", "\\href{https://github.com/TJhon/PeruData}{PeruData - link}", "Correction and implementation of new methods from the \\href{https://d2cml-ai.github.io/d2cml.ai}{books}, Inference on Causal and Structural Parameters using ML and AI with R, Python, and Julia, used in the course 14.38 at MIT, and, Machine Learning and Causal Inference using Python, used in the MGTECON-634 course at Stanford.",
-) |> 
-  fill(where, whit, autor, when, what) |> 
-  detailed_entries(what, when, autor, where, .protect = F)
+    ~ competition, ~ from, ~ year,
+    "Maratona Behind the Code", "IBM - Latinoamerica", "2021",
+    "Datathon2021 - Entel", "Entel", "2021",
+    "Datathon Interbank", "Interbank", "2020"
+  ) %>%
+    brief_entries(competition, year, from)
 ```
-
-
-
-
-Memberships
-===============================
-
-
-\begin{cvskills}
-  \cvskill
-    {\href{ https://github.com/d2cml-ai}{Dive into Causal Machine Learning}}
-    {Since 2022-Jul}
-\end{cvskills}
-
-
-
-
-Courses
-===============================
-
-```{r}
-data_ref_xl[["course-online"]] |> 
-  tidyr::fill(where, date, what) |> 
-  detailed_entries(why = why, with = where, when = date, what = what)
-```
-
-
 
 
