@@ -63,6 +63,7 @@ names_sheet <- googlesheets4::sheet_names(xlml_url)
 
 data <- list()
 for(sheet in names_sheet){
+  # print(sheet)
   data[[sheet]] <- read_sheet(xlml_url, sheet = sheet)|> mutate(across(where(is.list), \(x) unlist(x)))
 }
 ```
@@ -78,7 +79,7 @@ También tengo competencia en la automatización y creación de librerías en es
 
 # Educación
 
-```{r}
+```{r edu}
 data[['00_education']] |> 
   mutate(
     across(c(inicio, final), str_replace, " - ", ", ")
@@ -92,7 +93,7 @@ data[['00_education']] |>
 
 # Experiencia laboral
 
-```{r}
+```{r work}
 data[["05_work_exp1"]] |> 
   drop_na(why1) |> 
   fill(1:6) |> 
@@ -107,7 +108,7 @@ data[["05_work_exp1"]] |>
 # Habilidades Relevantes
 
 
-```{r}
+```{r skill}
 tec_skills <- list(
   "Programación" = c('R', 'Python', 'SQL', 'Julia', 'Stata', 'Java'), 
   "Análisis de Datos"= c("Visualización", "Limpieza de Datos", "Pronósticos", "Modelado", "Comunicación", "Inferencia", "Aprendizaje Automático", "Web Scraping"), 
@@ -145,7 +146,7 @@ cvskills(tec_skills)
 
 # Participaciones en Concursos de Machine Learning 
 
-```{r}
+```{r part}
 tribble(
     ~ competition, ~ from, ~ year,
     "Maratona Behind the Code", "IBM - Latinoamerica", "2021",
