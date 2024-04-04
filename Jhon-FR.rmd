@@ -56,7 +56,7 @@ cvskills <- function(skills_list){
 ```
 
 
-```{r}
+```{r data}
 gs4_deauth()
 xlml_url = "https://docs.google.com/spreadsheets/d/1mn-E5bP6Z1r-YUq6KJzIhFNeJ2UpYbt5DK5AtIVlwUs/edit#gid=1692786986"
 names_sheet <- googlesheets4::sheet_names(xlml_url)
@@ -99,7 +99,7 @@ data[["05_work_exp1"]] |>
   fill(1:6) |> 
   arrange(desc(final), lugar) |> 
   group_by(lugar) |> 
-  arrange(why1) |> 
+  # arrange(why1) |> 
   detailed_entries(why = why1, where = region, what = title, with = lugar, when = final, .protect = F)
 ```
 
