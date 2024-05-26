@@ -111,17 +111,27 @@ data[["05_work_exp1"]] |>
 ```{r skill}
 tec_skills <- list(
   "Programación" = c('R', 'Python', 'SQL', 'Julia', 'Stata', 'Java'), 
-  "Análisis de Datos"= c("Visualización", "Limpieza de Datos", "Pronósticos", "Modelado", "Comunicación", "Inferencia", "Aprendizaje Automático", "Web Scraping"), 
-  "Software" = c("Rstudio", 'PowerBi', 'Tableau', 'VSCode', 'NeoVim', 'Linux', 'Terminal', 'MSOffice'),
+  "Análisis de Datos"= c(
+    "Visualización", "Limpieza de Datos", "Pronósticos", "Modelado", "Comunicación", 
+    "Inferencia", "Aprendizaje Automático")
+  , 
+  "Software" = c(
+    "Docker",
+    "Rstudio", 'PowerBi', 'Tableau', 'VSCode', 
+    'NeoVim', 'Linux', 'Terminal', 'MSOffice'
+    ),
   'Programación Web' = c('HTML', 'CSS', 'JavaScript', 'ReactJS'),
   'Desarrollo de Paquetes' = c('R', 'Python', 'Julia'),
-  'Otros' = c('AWS (EC2)', 'AZURE (Form Recognizer API)', 'Git', 'Markdown', 'Quarto', 'Jupyter', 'SupaBase', 'Automatización')
+  "Cloud" = c(
+    'AWS (Lambda, EC2)', "AZURE (Form Recognizer API)", "Google Cloud (Big Query)"
+    ),
+  'Otros' = c( 'Git', 'Markdown', 'Quarto', 'Jupyter', 'SupaBase', 'Automatización',  "Web Scraping")
 )
 cvskills(tec_skills)
 ```
 
 
-# Desarrollo de Paquetes y Librerias 
+# Proyectos
 
 ## Personales
 
@@ -130,7 +140,7 @@ cvskills(tec_skills)
 - [Ssynthdid](https://github.com/TJhon/ssynthdid)
 \normalsize
 
-## Como Asistente de Investigación
+## Como Analista de Datos | Desarrollador de Software
 
 \small
 - [Python Visual Library](https://github.com/d2cml-ai/python_visual_library)
